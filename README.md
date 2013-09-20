@@ -6,7 +6,7 @@ An in-core editor for Clojure data structures and, particularly, functions.
 
 Preliminary, incomplete, alpha quality code. This implements a structure editor in a terminal, 
 not a display editor in the tradition of InterLisp's DEdit. I do intend to follow up with a 
-display editor, but this is exploratory code.
+display editor, but this is exploratory proof-of-concept code.
 
 To edit an arbitrary s-expression:
 
@@ -19,19 +19,22 @@ To edit a function definition
 
 	(fedit 'name-of-function)
 
+NOTE: This is broken, see working notes below; but it is showing promise.
+
 ## Still to do
 
 ### Function metadata
 
 Currently, Clojure metadata on a function symbol as follows:
-{
-	:arglists ([sexpr]), 
-	:ns #<Namespace fedit.core>, 
-	:name sedit, :column 1, 
-	:doc "Edit an S-Expression, and return a modified version of it", 
-	:line 74, 
-	:file "fedit/core.clj"
-}
+
+	{
+		:arglists ([sexpr]), 
+		:ns #<Namespace fedit.core>, 
+		:name sedit, :column 1, 
+		:doc "Edit an S-Expression, and return a modified version of it", 
+		:line 74, 
+		:file "fedit/core.clj"
+	}
 
 In order to be able to recover the source of a function which has not yet been committed to the file
 system, it would be necessary to store the source s-expression on the metadata. You cannot add new 
@@ -57,7 +60,7 @@ specified package available on the path.
 At the end of a Clojure session (or, actually, at any stage within a session) the user could issue 
 a directive
 
-(persist-edits)
+	(persist-edits)
 
 Until this directive had been called, none of the in-core edits which had been made in the session 
 would be saved. When the directive was made, the persister would go through all functions/symbols 

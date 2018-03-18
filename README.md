@@ -120,6 +120,30 @@ metadata and passes it to sedit, attempting to redefine the function from the re
 the basic clojure 'all data is immutable' reason. But, when you invoke (use 'namespace :reload), it
 is able to redefine all the functions, so I must be able to work out how this is done.
 
+## Development Mode
+
+### Run application:
+
+```
+lein clean
+lein figwheel dev
+```
+
+Figwheel will automatically push cljs changes to the browser.
+
+Wait a bit, then browse to [http://localhost:3449](http://localhost:3449).
+
+## Production Build
+
+
+To compile clojurescript to javascript:
+
+```
+lein clean
+lein cljsbuild once min
+```
+
+
 ## License
 
 Copyright © 2013 Simon Brooke <stillyet-github@googlemail.com>

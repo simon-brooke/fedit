@@ -1,0 +1,4 @@
+(ns fedit.db)
+
+(def default-db
+  {:name "re-frame"})

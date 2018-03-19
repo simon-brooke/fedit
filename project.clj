@@ -4,8 +4,10 @@
   :license {:name "GNU General Public License,version 2.0 or (at your option) any later version"
             :url "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [jline "2.11"]
                  [org.clojure/clojurescript "1.9.908"]
+                 [hiccup "1.0.5"]
+                 [jline "2.11"]
+                 [markdown-clj "1.0.2"]
                  [reagent "0.7.0"]
                  [re-frame "0.10.5"]]
 
@@ -13,7 +15,7 @@
 
   :min-lein-version "2.5.3"
 
-  :source-paths ["src/clj"]
+  :source-paths ["src/clj" "src/cljc"]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target" "classes" "bin"]
 
@@ -28,7 +30,7 @@
   :cljsbuild
   {:builds
    [{:id           "dev"
-     :source-paths ["src/cljs"]
+     :source-paths ["src/cljs" "src/cljc"]
      :figwheel     {:on-jsload "fedit.core/mount-root"}
      :compiler     {:main                 fedit.core
                     :output-to            "resources/public/js/compiled/app.js"
@@ -40,7 +42,7 @@
                     }}
 
     {:id           "min"
-     :source-paths ["src/cljs"]
+     :source-paths ["src/cljs" "src/cljc"]
      :compiler     {:main            fedit.core
                     :output-to       "resources/public/js/compiled/app.js"
                     :optimizations   :advanced
